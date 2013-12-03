@@ -16,10 +16,6 @@ public class CoverageTreeTest {
 
         var r2 = mem.NewArray(50);
         mem.MemoryInUse.AssertEquals(50);
-        NestingDepthTreeNode.QueryNestingDepthAt(r2._refNode, -1).AssertEquals(0);
-        NestingDepthTreeNode.QueryNestingDepthAt(r2._refNode, 0).AssertEquals(1);
-        NestingDepthTreeNode.QueryNestingDepthAt(r2._refNode, 49).AssertEquals(1);
-        NestingDepthTreeNode.QueryNestingDepthAt(r2._refNode, 50).AssertEquals(0);
 
         var r3 = r2.Slice(new Interval(10, 15));
         r2[10] = 5;
@@ -55,9 +51,6 @@ public class CoverageTreeTest {
             var covered = Enumerable.Range(0, bigArraySize).Count(i => sliceRanges.Any(a => i >= a.Item1 && i < a.Item1 + a.Item2));
             mem.MemoryInUse.AssertEquals(covered);
             var x = rng.Next(slicesOfBigArray.Count);
-            foreach (var slice in slicesOfBigArray) {
-                NestingDepthTreeNode.GetTotalAdjust(NestingDepthTreeNode.RootOf(slice._refNode)).AssertEquals(0);
-            }
             slicesOfBigArray[x].Dispose();
             slicesOfBigArray.RemoveAt(x);
             sliceRanges.RemoveAt(x);

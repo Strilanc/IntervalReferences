@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
+/// <summary>
+/// Allows allocating, writing, reading, and free-ing memory.
+/// Supports free-ing PARTS of allocated memory.
+/// Just for testing. NOT very efficient.
+/// </summary>
 public sealed class TheFanciestMemory {
     public int MemoryInUse { get; private set; }
     private enum WordState {
@@ -70,8 +75,5 @@ public sealed class TheFanciestMemory {
 
     public RangedArray NewArray(int length) {
         return new RangedArray(length, this);
-    }
-    public RangedArray SliceArray(RangedArray array, Interval interval) {
-        return new RangedArray(array, interval, this);
     }
 }

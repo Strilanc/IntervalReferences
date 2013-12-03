@@ -364,7 +364,7 @@ public sealed class NestingDepthTreeNode {
         // total
         _subTreeTotalAdjust = GetTotalAdjust(_less) + _adjust + GetTotalAdjust(_more);
 
-        // min
+        // lowest dive
         var totalAdjustJustBefore = GetTotalAdjust(_less) + _adjust;
         var totalAdjustJustAfter = totalAdjustJustBefore + (_more == null ? 0 : _more._subTreeRelativeMinimum);
         _subTreeRelativeMinimum = Math.Min(totalAdjustJustBefore, totalAdjustJustAfter);

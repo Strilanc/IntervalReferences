@@ -1,10 +1,16 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 
+/// <summary>
+/// A contiguous range of integers.
+/// May be degenerate, with an offset but no length.
+/// </summary>
 [DebuggerDisplay("{ToString()}")]
 public struct Interval {
     public readonly int Offset;
     public readonly int Length;
     public Interval(int offset, int length) {
+        if (length < 0) throw new ArgumentOutOfRangeException("length");
         Offset = offset;
         Length = length;
     }
